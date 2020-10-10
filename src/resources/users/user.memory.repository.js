@@ -18,7 +18,7 @@ const updateUserDB = user => {
 
 const removeUserDB = id => {
   db.splice(
-    db.findIndex(({ user }) => user.id === id),
+    db.findIndex(user => user.id === id),
     1
   );
   return 'user deleted!';
