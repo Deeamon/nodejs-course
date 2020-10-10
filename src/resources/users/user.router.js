@@ -29,7 +29,7 @@ router.route('/:userId/').get(async (req, res) => {
   const userId = req.params.userId;
   const user = await get(userId);
 
-  if (user === undefined) {
+  if (!user) {
     res
       .set('content-type', 'application/json')
       .status(404)
@@ -53,7 +53,7 @@ router.route('/:id/').put(async (req, res) => {
   } else {
     const updatedUser = await update(userId, userData);
 
-    if (updatedUser === undefined) {
+    if (!updatedUser) {
       res
         .set('content-type', 'application/json')
         .status(404)
@@ -71,8 +71,8 @@ router.route('/:id/').delete(async (req, res) => {
   const userId = req.params.id;
   const user = await remove(userId);
 
-  if (user === undefined) {
-    res.status(404).json({ message: `User with id ${userId} doesn't exist!` });
+  if (!user) {
+    res.status(404).json({ message: `User with id: ${userId} doesn't exist!` });
   } else {
     res.sendStatus(204);
   }

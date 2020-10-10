@@ -12,10 +12,7 @@ const getAll = async () => {
   return users.map(User.removePass);
 };
 
-const save = async userData => {
-  const newUser = await saveUserToDB(new User(userData));
-  return User.removePass(newUser);
-};
+const save = async userData => await saveUserToDB(new User(userData));
 
 const get = async id => {
   const users = await getAll();
@@ -31,9 +28,8 @@ const update = async (id, data) => {
 const remove = async id => {
   const user = await get(id);
   if (user === undefined) return null;
-
-  await removeUserDB(id);
-  return user;
+  const isRemove = await removeUserDB(id);
+  return `[id: ${user.id}] ${isRemove}`;
 };
 
 module.exports = {
