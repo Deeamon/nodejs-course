@@ -13,6 +13,15 @@ class User {
     this.password = password;
   }
 
+  getUser() {
+    return {
+      id: this.id,
+      name: this.name,
+      login: this.login,
+      password: this.password
+    };
+  }
+
   static toResponse(user) {
     const { id, name, login } = user;
     return { id, name, login };
