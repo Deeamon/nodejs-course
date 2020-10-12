@@ -4,6 +4,7 @@ const {
   updateBoardDB,
   removeBoardDB
 } = require('./board.memory.repository');
+const { removeBoardTasks } = require('../tasks/task.service');
 const Board = require('./board.model');
 
 const getAllBoards = async () => await getBoardsDB();
@@ -24,6 +25,7 @@ const updateBoard = async (boardId, boardData) => {
 const removeBoard = async id => {
   const board = await getBoard(id);
   if (!board) return null;
+  await removeBoardTasks(id);
   return removeBoardDB(id);
 };
 
