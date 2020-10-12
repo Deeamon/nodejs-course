@@ -4,13 +4,13 @@ const getBoardsDB = () => [...boards];
 
 const saveBoardToDB = board => {
   boards.push(board);
-  return 'Board added!';
+  return boards.find(({ id }) => id === board.id);
 };
 
 const updateBoardDB = board => {
   const boardIndex = boards.findIndex(({ id }) => id === board.id);
   boards.splice(boardIndex, 1, board);
-  return 'Board updated!';
+  return boards.find(({ id }) => id === board.id);
 };
 
 const removeBoardDB = boardId => {

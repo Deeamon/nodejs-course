@@ -4,7 +4,7 @@ const getAllUsersDB = () => [...db];
 
 const saveUserToDB = user => {
   db.push(user);
-  return 'user added!';
+  return db.find(({ id }) => id === user.id);
 };
 
 const updateUserDB = user => {
@@ -13,7 +13,7 @@ const updateUserDB = user => {
     1,
     user
   );
-  return 'user updated!';
+  return db.find(({ id }) => id === user.id);
 };
 
 const removeUserDB = id => {

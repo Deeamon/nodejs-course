@@ -5,7 +5,7 @@ const getTasksDB = () => [...tasks];
 const saveTaskDB = task => {
   tasks.push(task);
   tasks.sort((a, b) => a.order - b.order);
-  return 'Task added!';
+  return tasks.find(({ id }) => id === task.id);
 };
 
 const updateTaskDB = taskData => {
@@ -15,7 +15,7 @@ const updateTaskDB = taskData => {
     taskData
   );
   tasks.sort((a, b) => a.order - b.order);
-  return 'Task updated!';
+  return tasks.find(({ id }) => id === taskData.id);
 };
 
 const removeTaskDB = taskId => {
@@ -40,7 +40,7 @@ const unassignTasksDB = userId => {
       task.userId = null;
     }
   });
-  return 'Task successfully unassigned!';
+  return 'Task unassigned!';
 };
 
 module.exports = {
