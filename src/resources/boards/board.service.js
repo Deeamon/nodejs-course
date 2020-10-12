@@ -10,8 +10,10 @@ const getAllBoards = async () => await getBoardsDB();
 
 const addBoard = async boardData => await saveBoardToDB(new Board(boardData));
 
-const getBoard = async boardId =>
-  await getAllBoards().find(({ id }) => id === boardId);
+const getBoard = async boardId => {
+  const boards = await getAllBoards();
+  return boards.find(({ id }) => id === boardId);
+};
 
 const updateBoard = async (boardId, boardData) => {
   const board = await getBoard(boardId);
