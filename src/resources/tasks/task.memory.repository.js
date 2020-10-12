@@ -3,7 +3,8 @@ const tasks = [];
 const getTasksDB = () => [...tasks];
 
 const saveTaskDB = task => {
-  tasks.push(task).sort((a, b) => a.order - b.order);
+  tasks.push(task);
+  tasks.sort((a, b) => a.order - b.order);
   return 'Task added!';
 };
 
@@ -33,10 +34,20 @@ const removeBoardTaskDB = boardId => {
   );
 };
 
+const unassignTasksDB = userId => {
+  tasks.forEach(task => {
+    if (task.userId === userId) {
+      task.userId = null;
+    }
+  });
+  return 'Task successfully unassigned!';
+};
+
 module.exports = {
   getTasksDB,
   saveTaskDB,
   updateTaskDB,
   removeTaskDB,
-  removeBoardTaskDB
+  removeBoardTaskDB,
+  unassignTasksDB
 };

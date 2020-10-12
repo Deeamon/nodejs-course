@@ -4,7 +4,8 @@ const {
   saveTaskDB,
   updateTaskDB,
   removeTaskDB,
-  removeBoardTaskDBB
+  removeBoardTaskDB,
+  unassignTasksDB
 } = require('./task.memory.repository');
 
 const getTasks = async boardId => {
@@ -35,7 +36,11 @@ const removeTask = async (boardId, taskId) => {
   return removeTaskDB(taskId);
 };
 
-const removeBoardTasks = async boardId => await removeBoardTaskDBB(boardId);
+const removeBoardTasks = async boardId => await removeBoardTaskDB(boardId);
+
+const unassignUser = async userId => {
+  await unassignTasksDB(userId);
+};
 
 module.exports = {
   getTasks,
@@ -43,5 +48,6 @@ module.exports = {
   getTask,
   updateTask,
   removeTask,
-  removeBoardTasks
+  removeBoardTasks,
+  unassignUser
 };
