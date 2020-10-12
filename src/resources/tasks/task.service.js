@@ -28,7 +28,7 @@ const updateTask = async (boardId, taskId, taskData) => {
   return await updateTaskDB(updatedTask);
 };
 
-const deleteTask = async (boardId, taskId) => {
+const removeTask = async (boardId, taskId) => {
   const task = await getTask(boardId, taskId);
   if (!task) return null;
 
@@ -42,6 +42,6 @@ module.exports = {
   addTask,
   getTask,
   updateTask,
-  deleteTask,
+  removeTask,
   removeBoardTasks
 };
